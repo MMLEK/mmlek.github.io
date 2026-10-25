@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MMLEK — Video Editor &amp; Photographer</title>
+  <meta name="description" content="Rungwit Chusang (MMLEK) — video editor for REAL / Behind History, freelance YouTube editor and concert photographer.">
+  <meta name="theme-color" content="#0b0d12">
+  <!-- ตอนแชร์ลิงก์ (LINE / Facebook / X) ใส่รูป og-image.jpg 1200×630 ไว้ในโฟลเดอร์ images แล้วแก้ลิงก์ด้านล่างเป็นชื่อเว็บจริง -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MMLEK — Video Editor &amp; Photographer">
+  <meta property="og:description" content="ตัดต่อ YouTube content และคลิปสั้น · Behind History · ภาพคอนเสิร์ต">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='56' fill='%23E3A82B'/%3E%3Cg fill='%2314110a'%3E%3Ccircle cx='60' cy='60' r='10'/%3E%3Ccircle cx='60' cy='27' r='13'/%3E%3Ccircle cx='91' cy='50' r='13'/%3E%3Ccircle cx='79' cy='86' r='13'/%3E%3Ccircle cx='41' cy='86' r='13'/%3E%3Ccircle cx='29' cy='50' r='13'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ฉากหลัง: แสงเรือง + ฟิล์มเกรน -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg__glow bg__glow--a"></div>
+    <div class="bg__glow bg__glow--b"></div>
+    <div class="bg__glow bg__glow--c"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- timecode มุมจอ -->
+  <div class="tc mono" aria-hidden="true"><span class="rec"></span><span id="timecode">00:00:00:00</span></div>
+
+  <!-- เมนูลอยด้านบน (ซ่อนเมื่อแถบข้างโผล่บนจอใหญ่) -->
+  <header class="nav glass" id="nav">
+    <a href="#home" class="nav__brand" aria-label="Home"><span class="rotator" data-rotator>MMLEK</span></a>
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <a href="#works" data-i18n="nav.works">ผลงาน</a>
+      <a href="#freelance" data-i18n="nav.freelance">ฟรีแลนซ์</a>
+      <a href="#photos" data-i18n="nav.photos">ภาพถ่าย</a>
+      <a href="#about" data-i18n="nav.about">เกี่ยวกับ</a>
+      <a href="#contact" data-i18n="nav.contact">ติดต่อ</a>
+    </nav>
+    <div class="nav__right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="nav__menu" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- แถบข้าง: ชื่อใหญ่หดมาเกาะตรงนี้ตอนเลื่อนลง (จอใหญ่) -->
+  <aside class="side glass" id="side" aria-label="Profile">
+    <a href="#home" class="side__name"><span data-bind="nickname">MMLEK</span><span class="side__dot">.</span></a>
+    <p class="side__role mono"><span class="rotator" data-rotator></span></p>
+    <figure class="side__photo">
+      <img data-photo alt="">
+      <span class="side__ph mono" aria-hidden="true">PHOTO</span>
+    </figure>
+    <nav class="side__nav" aria-label="Sections">
+      <a href="#works"><span class="mono">01</span><span data-i18n="nav.works">ผลงาน</span></a>
+      <a href="#archive"><span class="mono">02</span><span data-i18n="nav.archive">คลังผลงาน</span></a>
+      <a href="#photos"><span class="mono">03</span><span data-i18n="nav.photos">ภาพถ่าย</span></a>
+      <a href="#about"><span class="mono">04</span><span data-i18n="nav.about">เกี่ยวกับ</span></a>
+      <a href="#contact"><span class="mono">05</span><span data-i18n="nav.contact">ติดต่อ</span></a>
+    </nav>
+    <div class="side__foot">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="th" aria-pressed="true">TH</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="copy mono" data-copy-email><span data-email></span></button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+      <video class="hero__video" id="heroVideo" muted loop playsinline autoplay hidden></video>
+      <div class="hero__title" id="heroTitle">
+        <h1>
+          <span class="hero__line">Editor</span>
+          <span class="hero__line hero__line--accent">Portfolio</span>
+        </h1>
+        <span class="hero__name glass" data-bind="nameEn"></span>
+      </div>
+      <p class="hero__intro reveal" data-bind="intro"></p>
+      <div class="hero__cta reveal">
+        <a href="#works" class="btn btn--accent" data-i18n="hero.cta1">ดูผลงาน</a>
+        <a href="#contact" class="btn btn--glass glass" data-i18n="hero.cta2">จ้างงาน</a>
+      </div>
+      <a href="#stats" class="hero__down mono" data-i18n="hero.down">เลื่อนลง ↓</a>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+    <div class="content">
+      <!-- ===== STATS ===== -->
+      <section class="stats" id="stats"></section>
+
+      <!-- ===== WORKS + ARCHIVE ===== -->
+      <section class="section" id="works">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow mono"><span data-num></span> — <span data-i18n="works.eyebrow">Selected work</span></p>
+            <h2 data-i18n="works.title">ผลงาน</h2>
+          </div>
+        </div>
+        <div class="client__head reveal" id="mainHead" hidden>
+          <h3 class="client__name" id="mainName"></h3>
+          <span class="client__count mono"><span id="mainCount"></span> <span data-clips></span></span>
+          <p class="client__sub" id="mainSub"></p>
+        </div>
+        <div class="works" id="worksGrid"></div>
+        <p class="empty" id="worksEmpty" hidden data-i18n="works.empty">หมวดนี้กำลังจะมาเร็วๆ นี้</p>
+
+        <div class="archive" id="archive">
+          <div id="archiveSubs"></div>
+        </div>
+      </section>
+
+      <!-- ===== หมวดผลงานอื่นๆ (เช่น ฟรีแลนซ์) สร้างจาก content.js ===== -->
+      <div id="extraSections"></div>
+
+      <!-- ===== PHOTOS ===== -->
+      <section class="section" id="photos">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow mono"><span data-num></span> — <span data-i18n="photos.eyebrow">Photo</span></p>
+            <h2 data-i18n="photos.title">Photo</h2>
+          </div>
+          <p class="section__sub" data-i18n="photos.sub">แสงบนเวที เสียงกรี๊ด และวินาทีที่เกิดขึ้นครั้งเดียว</p>
+        </div>
+        <div class="photos" id="photoGrid"></div>
+      </section>
+
+      <!-- ===== ABOUT + TIMELINE ===== -->
+      <section class="section" id="about">
+        <p class="eyebrow mono reveal"><span data-num></span> — <span data-i18n="about.eyebrow">About</span></p>
+        <div class="about">
+          <figure class="about__photo reveal">
+            <img data-photo alt="">
+            <span class="about__ph mono" aria-hidden="true">PHOTO</span>
+            <figcaption class="about__badge glass mono"><span data-bind="name"></span></figcaption>
+          </figure>
+          <div class="about__body">
+            <h2 class="reveal"><span data-i18n="about.hi">สวัสดี ผม</span> <span class="accent" data-bind="nickname"></span></h2>
+            <p class="about__bio reveal" data-bind="bio"></p>
+            <div class="about__cards">
+              <div class="card glass reveal">
+                <h3 class="mono" data-i18n="about.exp">ประสบการณ์</h3>
+                <ol class="tl" id="timeline"></ol>
+              </div>
+              <div class="card glass reveal">
+                <h3 class="mono" data-i18n="about.tools">เครื่องมือ</h3>
+                <ul class="tools" id="toolList"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section class="section" id="contact">
+        <div class="contact glass reveal" id="contactBox">
+          <p class="eyebrow mono"><span data-num></span> — <span data-i18n="contact.eyebrow">Contact</span></p>
+          <h2 class="contact__title" data-i18n-html="contact.title">มีคลิปอยากให้ตัด?<br>คุยกันได้เลย</h2>
+          <div class="contact__grid">
+            <form class="form" id="contactForm" novalidate>
+              <label><span data-i18n="form.name">ชื่อ</span><input name="name" required autocomplete="name"></label>
+              <label><span data-i18n="form.email">อีเมล</span><input name="email" type="email" required autocomplete="email"></label>
+              <label><span data-i18n="form.msg">รายละเอียดงาน</span><textarea name="message" rows="4" required></textarea></label>
+              <button class="btn btn--accent" type="submit" data-i18n="form.send">ส่งข้อความ</button>
+              <p class="form__status" id="formStatus" role="status"></p>
+            </form>
+            <div>
+              <button type="button" class="copy copy--big" data-copy-email>
+                <small class="mono" data-i18n="contact.copy">กดเพื่อคัดลอกอีเมล</small>
+                <span data-email></span>
+              </button>
+              <ul class="socials" id="socials"></ul>
+            </div>
+          </div>
+          <!-- ของเล่นให้ลาก -->
+          <div class="toy" id="toy" role="img" aria-label="Film reel">
+            <svg viewBox="0 0 120 120" width="112" height="112" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" fill="#E3A82B"/>
+              <circle cx="60" cy="60" r="56" fill="none" stroke="#14110a" stroke-width="3"/>
+              <circle cx="60" cy="60" r="10" fill="#14110a"/>
+              <g fill="#14110a">
+                <circle cx="60" cy="27" r="13"/><circle cx="91" cy="50" r="13"/><circle cx="79" cy="86" r="13"/>
+                <circle cx="41" cy="86" r="13"/><circle cx="29" cy="50" r="13"/>
+              </g>
+              <circle cx="60" cy="60" r="4" fill="#E3A82B"/>
+            </svg>
+            <span class="toy__hint mono" data-i18n="toy.hint">ลากเล่นได้</span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer mono">
+        <span>© <span id="footYear"></span> <span data-bind="nickname"></span></span>
+        <a href="#home" data-i18n="footer.top">กลับขึ้นบน ↑</a>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ตัวเล่นวิดีโอ -->
+  <dialog class="player" id="player" aria-label="Video">
+    <div class="player__box glass">
+      <button class="player__close" id="playerClose" type="button" aria-label="Close">✕</button>
+      <div class="player__frame" id="playerFrame"></div>
+      <p class="player__title" id="playerTitle"></p>
+    </div>
+  </dialog>
+
+  <!-- ดูรูปขยาย -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo">
+    <button class="lightbox__btn lightbox__close" id="lbClose" type="button" aria-label="Close">✕</button>
+    <button class="lightbox__btn lightbox__prev" id="lbPrev" type="button" aria-label="Previous">‹</button>
+    <figure class="lightbox__fig">
+      <img id="lbImg" alt="">
+      <figcaption class="mono" id="lbCap"></figcaption>
+    </figure>
+    <button class="lightbox__btn lightbox__next" id="lbNext" type="button" aria-label="Next">›</button>
+  </dialog>
+
+  <div class="toast mono" id="toast" role="status"></div>
+  <div class="error-banner" id="errorBanner" hidden></div>
+
+  <script src="content.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
