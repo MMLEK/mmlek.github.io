@@ -64,7 +64,7 @@ window.SITE = {
     instagram: "https://www.instagram.com/mmlek_/",
     tiktok:    "",
     youtube:   "",      // เว้นว่าง = ไม่โชว์ปุ่ม YouTube ในส่วนติดต่อ
-    formspree: ""    // รหัสจาก formspree.io ถ้าอยากให้ฟอร์มส่งเข้าอีเมล
+    formspree: "xwllvgwq"    // รหัสจาก formspree.io ถ้าอยากให้ฟอร์มส่งเข้าอีเมล
   },
 
   /* ---------- ไทม์ไลน์ประสบการณ์ (ใหม่สุดอยู่บน) ---------- */
